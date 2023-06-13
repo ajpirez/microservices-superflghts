@@ -18,10 +18,12 @@ let UserModule = class UserModule {
 UserModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            mongoose_1.MongooseModule.forFeatureAsync([{
+            mongoose_1.MongooseModule.forFeatureAsync([
+                {
                     name: models_1.USER.name,
-                    useFactory: () => user_schema_1.UserSchema
-                }])
+                    useFactory: () => user_schema_1.UserSchema,
+                },
+            ]),
         ],
         controllers: [user_controller_1.UserController],
         providers: [user_service_1.UserService],

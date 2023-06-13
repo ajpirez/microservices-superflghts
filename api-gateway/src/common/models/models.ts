@@ -1,9 +1,9 @@
 export const USER = {
-  name: 'users'
-}
+  name: 'users',
+};
 export const PASSENGER = {
-  name: 'passengers'
-}
+  name: 'passengers',
+};
 export const FLIGHT = {
-  name: 'flights'
-}
+  name: 'flights',
+};

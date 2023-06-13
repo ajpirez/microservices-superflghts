@@ -1,11 +1,10 @@
-import {Module} from '@nestjs/common';
-import {PassengerController} from './passenger.controller';
-import {ProxyModule} from '../common/proxy/proxy.module';
+import { Module } from '@nestjs/common';
+import { PassengerController } from './passenger.controller';
+import { ProxyModule } from '../common/proxy/proxy.module';
 
 @Module({
-    imports: [ProxyModule],
-    controllers: [PassengerController],
-    providers: [],
+  imports: [ProxyModule],
+  controllers: [PassengerController],
+  providers: [],
 })
-export class PassengerModule {
-}
+export class PassengerModule {}

@@ -8,7 +8,7 @@ exports.UserSchema = new moongoose.Schema({
     email: { type: String, required: true },
     password: { type: String, required: true },
 }, {
-    timestamps: true
+    timestamps: true,
 });
 exports.UserSchema.index({ username: 1 }, { unique: true });
 exports.UserSchema.index({ email: 1 }, { unique: true });

@@ -9,21 +9,19 @@ async function bootstrap() {
   const logger = new Logger('Main');
 
   app.useGlobalPipes(
-      new ValidationPipe(({
-        whitelist: true, // solo coge las propiedades del dto y las q no se desechan
-        forbidNonWhitelisted: true, // las propiedades q no estan en el dto dice q no deberian estar
-        transform: true,
-        transformOptions: {
-          enableImplicitConversion: true
-        }
-      })),
+    new ValidationPipe({
+      whitelist: true, // solo coge las propiedades del dto y las q no se desechan
+      forbidNonWhitelisted: true, // las propiedades q no estan en el dto dice q no deberian estar
+      transform: true,
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
+    }),
   );
 
   app.useGlobalFilters(new ALLExceptionFilter());
 
-  app.useGlobalInterceptors(
-      new TimeoutInterceptor()
-  );
+  app.useGlobalInterceptors(new TimeoutInterceptor());
 
   app.setGlobalPrefix('api/v2');
 

@@ -18,6 +18,7 @@ const user_dto_1 = require("./dto/user.dto");
 const common_1 = require("@nestjs/common");
 const microservices_1 = require("@nestjs/microservices");
 const constants_1 = require("../common/constants");
+const parse_mongo_id_pipe_1 = require("../common/pipes/parse-mongo-id.pipe");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
@@ -29,10 +30,15 @@ let UserController = class UserController {
         return this.userService.findAll();
     }
     findOne(id) {
-        return this.userService.findOne(id);
+        try {
+            return this.userService.findOne(id);
+        }
+        catch (e) {
+            throw e;
+        }
     }
     update(payload) {
-        return this.userService.update(payload.id, payload.updateUserDto);
+        return this.userService.update(payload.id, payload.userDTO);
     }
     delete(id) {
         return this.userService.remove(id);
@@ -60,7 +66,7 @@ __decorate([
 ], UserController.prototype, "findAll", null);
 __decorate([
     (0, microservices_1.MessagePattern)(constants_1.UserMsg.FIND_ONE),
-    __param(0, (0, microservices_1.Payload)()),
+    __param(0, (0, microservices_1.Payload)(new parse_mongo_id_pipe_1.ParseMongoIdPipe())),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
@@ -74,7 +80,7 @@ __decorate([
 ], UserController.prototype, "update", null);
 __decorate([
     (0, microservices_1.MessagePattern)(constants_1.UserMsg.DELETE),
-    __param(0, (0, microservices_1.Payload)()),
+    __param(0, (0, microservices_1.Payload)('id', parse_mongo_id_pipe_1.ParseMongoIdPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)

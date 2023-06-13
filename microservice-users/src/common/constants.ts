@@ -10,4 +10,3 @@ export enum UserMsg {
   DELETE = 'DELETE_USER',
   VALID_USER = 'VALID_USER',
 }
-

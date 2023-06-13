@@ -12,7 +12,7 @@ import {
 import { CreateFlightDto } from './dto/create-flight.dto';
 import { UpdateFlightDto } from './dto/update-flight.dto';
 import { ClientProxySuperFlights } from '../common/proxy/client-proxy';
-import { Observable } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
 import { IFlight } from './interfaces/flight.interface';
 import { FlightMSG, PassengerMSG } from '../common/constants';
 
@@ -59,11 +59,9 @@ export class FlightController {
     @Param('flightId') flightId: string,
     @Param('passengerId') passengerId: string,
   ) {
-    const passenger = await this.clientProxyPassenger.send(
-      PassengerMSG.FIND_ONE,
-      passengerId,
+    const passenger = await firstValueFrom(
+      this.clientProxyPassenger.send(PassengerMSG.FIND_ONE, passengerId),
     );
-
     if (!passenger)
       throw new HttpException('Passenger Not Found', HttpStatus.NOT_FOUND);
 

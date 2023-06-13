@@ -1,3 +1,3 @@
 export const USER = {
-  name: 'users'
-}
+  name: 'users',
+};

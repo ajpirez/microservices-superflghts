@@ -13,7 +13,7 @@ let CommonModule = class CommonModule {
 CommonModule = __decorate([
     (0, common_1.Module)({
         providers: [],
-        exports: []
+        exports: [],
     })
 ], CommonModule);
 exports.CommonModule = CommonModule;
